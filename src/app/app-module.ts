@@ -4,10 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { Navbarcomponent } from './components/navbarcomponent/navbarcomponent';
+import { Footercomponent } from './components/footercomponent/footercomponent';
+import { Iniciocomponent } from './components/iniciocomponent/iniciocomponent';
+import { Listadocomponent } from './components/listadocomponent/listadocomponent';
+import { Detallecomponent } from './components/detallecomponent/detallecomponent';
+import { Misreservascomponent } from './components/misreservascomponent/misreservascomponent';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    Navbarcomponent,
+    Footercomponent,
+    Iniciocomponent,
+    Listadocomponent,
+    Detallecomponent,
+    Misreservascomponent
   ],
   imports: [
     BrowserModule,
