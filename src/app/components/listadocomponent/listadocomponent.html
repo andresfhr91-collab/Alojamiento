@@ -1,9 +1,43 @@
 <h1 class="mb-4">Alojamientos disponibles</h1>
 
+<div class="card card-body mb-4">
+  <div class="row g-3 align-items-end">
+    <div class="col-md-3">
+      <label class="form-label">Ciudad</label>
+      <select class="form-select" [(ngModel)]="filtroCiudad">
+        <option value="">Todas</option>
+        <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Huéspedes</label>
+      <input type="number" min="1" class="form-control" [(ngModel)]="filtroHuespedes">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Tipo</label>
+      <select class="form-select" [(ngModel)]="filtroTipo">
+        <option value="">Todos</option>
+        <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Precio máximo</label>
+      <input type="number" min="0" step="10000" class="form-control" [(ngModel)]="filtroPrecioMaximo">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-outline-secondary w-100" (click)="limpiarFiltros()">Limpiar filtros</button>
+    </div>
+  </div>
+</div>
+
 <div class="alert alert-danger" *ngIf="mensajeError">{{ mensajeError }}</div>
 
+<div class="alert alert-warning" *ngIf="!mensajeError && alojamientos.length > 0 && filtrar().length === 0">
+  No se encontraron alojamientos con esos filtros.
+</div>
+
 <div class="row g-4">
-  <div class="col-sm-6 col-lg-4" *ngFor="let alojamiento of alojamientos">
+  <div class="col-sm-6 col-lg-4" *ngFor="let alojamiento of filtrar()">
     <app-tarjetacomponent [alojamiento]="alojamiento"></app-tarjetacomponent>
   </div>
 </div>
