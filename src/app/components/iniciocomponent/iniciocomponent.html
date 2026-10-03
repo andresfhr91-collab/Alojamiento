@@ -1,1 +1,18 @@
-<p>iniciocomponent works!</p>
+<section class="text-center py-5 bg-light rounded mb-5">
+  <h1 class="display-5 fw-bold">Inversiones LR</h1>
+  <p class="lead col-md-8 mx-auto">
+    Encuentra alojamientos temporales en las mejores ciudades de Colombia.
+    Compara opciones, cotiza tu estadía y reserva en pocos pasos.
+  </p>
+  <a class="btn btn-primary btn-lg" routerLink="/alojamientos">Buscar alojamientos</a>
+</section>
+
+<h2 class="mb-4">Alojamientos destacados</h2>
+
+<div class="alert alert-danger" *ngIf="mensajeError">{{ mensajeError }}</div>
+
+<div class="row g-4">
+  <div class="col-sm-6 col-lg-4" *ngFor="let alojamiento of destacados">
+    <app-tarjetacomponent [alojamiento]="alojamiento"></app-tarjetacomponent>
+  </div>
+</div>
