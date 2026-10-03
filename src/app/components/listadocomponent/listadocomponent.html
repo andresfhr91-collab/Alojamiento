@@ -1,1 +1,9 @@
-<p>listadocomponent works!</p>
+<h1 class="mb-4">Alojamientos disponibles</h1>
+
+<div class="alert alert-danger" *ngIf="mensajeError">{{ mensajeError }}</div>
+
+<div class="row g-4">
+  <div class="col-sm-6 col-lg-4" *ngFor="let alojamiento of alojamientos">
+    <app-tarjetacomponent [alojamiento]="alojamiento"></app-tarjetacomponent>
+  </div>
+</div>
