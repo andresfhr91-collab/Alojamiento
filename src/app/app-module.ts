@@ -10,6 +10,7 @@ import { Iniciocomponent } from './components/iniciocomponent/iniciocomponent';
 import { Listadocomponent } from './components/listadocomponent/listadocomponent';
 import { Detallecomponent } from './components/detallecomponent/detallecomponent';
 import { Misreservascomponent } from './components/misreservascomponent/misreservascomponent';
+import { Tarjetacomponent } from './components/tarjetacomponent/tarjetacomponent';
 
 @NgModule({
   declarations: [
@@ -19,17 +20,11 @@ import { Misreservascomponent } from './components/misreservascomponent/misreser
     Iniciocomponent,
     Listadocomponent,
     Detallecomponent,
-    Misreservascomponent
+    Misreservascomponent,
+    Tarjetacomponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideHttpClient()
-  ],
-  bootstrap: [App]
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  providers: [provideBrowserGlobalErrorListeners(), provideHttpClient()],
+  bootstrap: [App],
 })
-export class AppModule { }
+export class AppModule {}

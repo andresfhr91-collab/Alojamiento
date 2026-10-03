@@ -1,0 +1,14 @@
+<div class="card h-100 shadow-sm">
+  <img [src]="alojamiento.imagenPrincipal" class="card-img-top" [alt]="alojamiento.nombre">
+  <div class="card-body">
+    <h5 class="card-title">{{ alojamiento.nombre }}</h5>
+    <p class="text-muted mb-1">{{ alojamiento.ciudad }} · {{ alojamiento.tipo }}</p>
+    <p class="mb-1">Capacidad: {{ alojamiento.capacidad }} huéspedes</p>
+    <p class="mb-1">Calificación: ⭐ {{ alojamiento.calificacion }}</p>
+    <p class="fw-bold mb-2">$ {{ alojamiento.precioNoche | number }} / noche</p>
+    <span class="badge bg-secondary me-1" *ngFor="let servicio of alojamiento.servicios">{{ servicio }}</span>
+  </div>
+  <div class="card-footer bg-white border-0">
+    <a class="btn btn-primary w-100" [routerLink]="['/alojamientos', alojamiento.id]">Ver detalle</a>
+  </div>
+</div>
