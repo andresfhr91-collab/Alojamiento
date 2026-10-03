@@ -1,1 +1,53 @@
-<p>detallecomponent works!</p>
+<a routerLink="/alojamientos" class="btn btn-link px-0 mb-3">← Volver a alojamientos</a>
+
+<div class="alert alert-danger" *ngIf="mensajeError">{{ mensajeError }}</div>
+
+<div class="alert alert-warning" *ngIf="!cargando && !mensajeError && !alojamiento">
+  Alojamiento no encontrado.
+</div>
+
+<div *ngIf="alojamiento">
+  <h1>{{ alojamiento.nombre }}</h1>
+  <p class="text-muted">{{ alojamiento.ubicacion }} · {{ alojamiento.ciudad }}</p>
+
+  <div class="row g-2 mb-4">
+    <div class="col-md-6" *ngFor="let imagen of alojamiento.imagenes">
+      <img [src]="imagen" class="img-fluid rounded imagen-detalle" [alt]="alojamiento.nombre">
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <p>{{ alojamiento.descripcion }}</p>
+
+      <ul class="list-group mb-4">
+        <li class="list-group-item">Tipo: {{ alojamiento.tipo }}</li>
+        <li class="list-group-item">Capacidad: {{ alojamiento.capacidad }} huéspedes</li>
+        <li class="list-group-item">Habitaciones: {{ alojamiento.habitaciones }}</li>
+        <li class="list-group-item">Camas: {{ alojamiento.camas }}</li>
+        <li class="list-group-item">Baños: {{ alojamiento.banos }}</li>
+        <li class="list-group-item">Precio por noche: $ {{ alojamiento.precioNoche | number }}</li>
+        <li class="list-group-item">Calificación: ⭐ {{ alojamiento.calificacion }}</li>
+      </ul>
+
+      <h4>Servicios</h4>
+      <span class="badge bg-secondary me-1 mb-3" *ngFor="let servicio of alojamiento.servicios">{{ servicio }}</span>
+
+      <h4 class="mt-3">Reglas</h4>
+      <ul>
+        <li *ngFor="let regla of alojamiento.reglas">{{ regla }}</li>
+      </ul>
+
+      <h4 class="mt-3">Reseñas</h4>
+      <p class="text-muted" *ngIf="resenas.length === 0">Este alojamiento aún no tiene reseñas.</p>
+      <div class="card card-body mb-2" *ngFor="let resena of resenas">
+        <strong>{{ resena.usuario }} · ⭐ {{ resena.calificacion }}</strong>
+        <span>{{ resena.comentario }}</span>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <!-- Aquí irá el cotizador en el siguiente paso -->
+    </div>
+  </div>
+</div>
