@@ -11,6 +11,11 @@
 <div *ngIf="alojamiento" class="animate__animated animate__fadeIn">
   <h1>{{ alojamiento.nombre }}</h1>
   <p class="text-muted">{{ alojamiento.ubicacion }} · {{ alojamiento.ciudad }}</p>
+  <div class="alert alert-light border d-inline-block py-2" *ngIf="climaCargado">
+    <i class="bi bi-thermometer-half text-danger"></i>
+    Clima actual en {{ alojamiento.ciudad }}: <strong>{{ temperatura }} °C</strong> · {{ descripcionClima }}
+  </div>
+  <p class="text-muted small" *ngIf="errorClima">{{ errorClima }}</p>
 
   <div class="row g-2 mb-4">
     <div class="col-md-6" *ngFor="let imagen of alojamiento.imagenes">

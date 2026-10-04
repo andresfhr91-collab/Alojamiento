@@ -13,3 +13,4 @@ export class Alojamientos {
     return this.cliente.get<Datos>(this.url, { observe: 'response' });
   }
 }
+

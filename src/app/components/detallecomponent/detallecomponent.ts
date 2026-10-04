@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Alojamientos } from '../../service/alojamientos';
+import { Apisexternas } from '../../service/apisexternas';
 import { Alojamiento } from '../../models/alojamiento';
 import { Resena } from '../../models/resena';
 
@@ -13,6 +14,7 @@ import { Resena } from '../../models/resena';
 export class Detallecomponent implements OnInit {
   private route = inject(ActivatedRoute);
   private alojamientosService = inject(Alojamientos);
+  private apisService = inject(Apisexternas);
   private cdr = inject(ChangeDetectorRef);
 
   alojamiento: Alojamiento | undefined = undefined;
@@ -20,6 +22,11 @@ export class Detallecomponent implements OnInit {
   statuscode: number = 0;
   cargando: boolean = true;
   mensajeError: string = '';
+
+  temperatura: number = 0;
+  descripcionClima: string = '';
+  climaCargado: boolean = false;
+  errorClima: string = '';
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -32,11 +39,33 @@ export class Detallecomponent implements OnInit {
         this.alojamiento = alojamientos.find((a) => a.id === id && a.activo);
         this.resenas = resenas.filter((r) => r.alojamientoId === id);
         this.cargando = false;
+        if (this.alojamiento) {
+          this.cargarClima(this.alojamiento.latitud, this.alojamiento.longitud);
+        }
         this.cdr.markForCheck();
       },
       error: () => {
         this.mensajeError = 'No se pudo cargar la información del alojamiento.';
         this.cargando = false;
+        this.cdr.markForCheck();
+      },
+    });
+  }
+
+  // Consulta el clima actual de la ciudad en Open-Meteo
+  cargarClima(latitud: number, longitud: number): void {
+    this.apisService.getClima(latitud, longitud).subscribe({
+      next: (response) => {
+        const clima = response.body;
+        if (clima) {
+          this.temperatura = clima.current.temperature_2m;
+          this.descripcionClima = this.apisService.describirClima(clima.current.weather_code);
+          this.climaCargado = true;
+        }
+        this.cdr.markForCheck();
+      },
+      error: () => {
+        this.errorClima = 'No se pudo consultar el clima en este momento.';
         this.cdr.markForCheck();
       },
     });
