@@ -1,1 +1,35 @@
-<p>misreservascomponent works!</p>
+<h1 class="mb-4">Mis reservas</h1>
+
+<div class="alert alert-info" *ngIf="reservas.length === 0">
+  Aún no has realizado reservas.
+  <a routerLink="/alojamientos">Explora los alojamientos disponibles</a>.
+</div>
+
+<div class="table-responsive" *ngIf="reservas.length > 0">
+  <table class="table table-striped align-middle">
+    <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Alojamiento</th>
+      <th>Ciudad</th>
+      <th>Llegada</th>
+      <th>Salida</th>
+      <th>Huéspedes</th>
+      <th>Valor total</th>
+      <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let reserva of reservas">
+      <td>{{ reserva.id }}</td>
+      <td>{{ reserva.alojamientoNombre }}</td>
+      <td>{{ reserva.ciudad }}</td>
+      <td>{{ reserva.fechaLlegada }}</td>
+      <td>{{ reserva.fechaSalida }}</td>
+      <td>{{ reserva.huespedes }}</td>
+      <td>$ {{ reserva.total | number }}</td>
+      <td><span class="badge bg-success">{{ reserva.estado }}</span></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
