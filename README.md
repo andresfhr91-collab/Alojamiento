@@ -1,59 +1,94 @@
-# Alojamiento
+# Inversiones LR – Marketplace de Alojamientos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+Aplicación web (frontend) desarrollada en Angular para que potenciales huéspedes de **Inversiones LR** exploren alojamientos temporales, los filtren, consulten su detalle, obtengan una cotización y registren una reserva simulada.
 
-## Development server
+> Proyecto académico – Desarrollo de Sistemas de Información, 2026-2.
 
-To start a local development server, run:
+## Integrantes
 
-```bash
-ng serve
-```
+- Andrés Felipe Hernández Rodríguez
+- Juan David Villamizar Moreno
+- Edwin Santiago Cacua Gaitan
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tecnologías utilizadas
 
-## Code scaffolding
+| Tecnología | Uso |
+|---|---|
+| Angular 22 (NgModules) | Framework principal |
+| TypeScript | Lenguaje |
+| Bootstrap 5 | Estilos, grilla y diseño responsive |
+| Bootstrap Icons | Íconos |
+| animate.css | Animaciones |
+| Open-Meteo API | Clima actual de la ciudad del alojamiento |
+| Nager.Date API | Festivos de Colombia dentro de la estadía |
+| ExchangeRate API | Total aproximado en dólares |
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Requisitos para ejecutar
 
-```bash
-ng generate component component-name
-```
+- [Node.js](https://nodejs.org/) 20 o superior (incluye npm)
+- Conexión a internet (para las APIs externas, Bootstrap Icons y animate.css)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Instalación
 
 ```bash
-ng test
+git clone https://github.com/andresfhr91-collab/Alojamiento.git
+cd Alojamiento
+npm install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Ejecución
 
 ```bash
-ng e2e
+npm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Luego abrir **http://localhost:4200** en el navegador.
 
-## Additional Resources
+## Principales funcionalidades
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Inicio:** nombre de la plataforma, descripción y los 3 alojamientos mejor calificados.
+- **Listado:** alojamientos activos con imagen, nombre, ciudad, tipo, capacidad, precio, calificación y servicios.
+- **Filtros:** por ciudad, número de huéspedes, tipo y precio máximo, con opción para limpiarlos.
+- **Detalle:** toda la información del alojamiento, imágenes, reglas, reseñas y clima actual.
+- **Cotizador:** calcula noches, subtotal, tarifa de limpieza, tarifa de servicio (10 %) y total; muestra festivos y el valor en dólares.
+- **Reserva simulada:** con nombre y correo; queda en estado `CONFIRMADA`.
+- **Mis reservas:** lista de las reservas realizadas durante la ejecución.
+
+## Datos
+
+Los datos iniciales están en `public/data/data.json` y se consultan a través del servicio `Alojamientos` (la interfaz no importa el JSON directamente). Las imágenes están en `public/assets/images/`.
+
+## Estructura general del proyecto
+
+```
+src/app/
+├── components/
+│   ├── navbarcomponent/        → barra de navegación
+│   ├── footercomponent/        → pie de página
+│   ├── iniciocomponent/        → página inicial
+│   ├── listadocomponent/       → listado y filtros
+│   ├── tarjetacomponent/       → tarjeta reutilizable de alojamiento
+│   ├── detallecomponent/       → detalle del alojamiento
+│   ├── cotizadorcomponent/     → cotización y formulario de reserva
+│   └── misreservascomponent/   → reservas realizadas
+├── service/
+│   ├── alojamientos.ts         → lectura del JSON
+│   ├── reservas.ts             → manejo de reservas
+│   └── apisexternas.ts         → clima, festivos y tasa de cambio
+├── models/                     → interfaces TypeScript
+├── app-module.ts
+└── app-routing-module.ts       → rutas
+public/
+├── data/data.json
+└── assets/images/
+docs/                           → requerimientos, reglas, prototipos, componentes y navegación
+```
+
+## Rutas
+
+| Ruta | Pantalla |
+|---|---|
+| `/` | Inicio |
+| `/alojamientos` | Listado con filtros |
+| `/alojamientos/:id` | Detalle y cotizador |
+| `/reservas` | Mis reservas |
