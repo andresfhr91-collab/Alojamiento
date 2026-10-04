@@ -11,6 +11,7 @@ import { Listadocomponent } from './components/listadocomponent/listadocomponent
 import { Detallecomponent } from './components/detallecomponent/detallecomponent';
 import { Misreservascomponent } from './components/misreservascomponent/misreservascomponent';
 import { Tarjetacomponent } from './components/tarjetacomponent/tarjetacomponent';
+import { Cotizadorcomponent } from './components/cotizadorcomponent/cotizadorcomponent';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { Tarjetacomponent } from './components/tarjetacomponent/tarjetacomponent
     Detallecomponent,
     Misreservascomponent,
     Tarjetacomponent,
+    Cotizadorcomponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideBrowserGlobalErrorListeners(), provideHttpClient()],

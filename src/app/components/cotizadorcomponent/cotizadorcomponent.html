@@ -1,0 +1,49 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h4 class="card-title">Cotiza tu estadía</h4>
+    <p class="text-muted">$ {{ alojamiento.precioNoche | number }} / noche</p>
+
+    <div class="mb-3">
+      <label class="form-label">Fecha de llegada</label>
+      <input type="date" class="form-control" [min]="hoy"
+             [(ngModel)]="fechaLlegada" (ngModelChange)="cambiarDatos()">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Fecha de salida</label>
+      <input type="date" class="form-control" [min]="fechaLlegada || hoy"
+             [(ngModel)]="fechaSalida" (ngModelChange)="cambiarDatos()">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Huéspedes (máximo {{ alojamiento.capacidad }})</label>
+      <input type="number" class="form-control" min="1" [max]="alojamiento.capacidad"
+             [(ngModel)]="huespedes" (ngModelChange)="cambiarDatos()">
+    </div>
+
+    <button class="btn btn-primary w-100" (click)="cotizar()">Cotizar</button>
+
+    <div class="alert alert-danger mt-3 mb-0" *ngIf="mensajeError">{{ mensajeError }}</div>
+
+    <table class="table mt-3 mb-0" *ngIf="cotizacionValida">
+      <tbody>
+      <tr>
+        <td>$ {{ alojamiento.precioNoche | number }} × {{ noches }} noches</td>
+        <td class="text-end">$ {{ subtotal | number }}</td>
+      </tr>
+      <tr>
+        <td>Tarifa de limpieza</td>
+        <td class="text-end">$ {{ tarifaLimpieza | number }}</td>
+      </tr>
+      <tr>
+        <td>Tarifa de servicio (10%)</td>
+        <td class="text-end">$ {{ tarifaServicio | number }}</td>
+      </tr>
+      <tr class="fw-bold">
+        <td>Total</td>
+        <td class="text-end">$ {{ total | number }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
