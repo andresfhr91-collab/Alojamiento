@@ -46,6 +46,19 @@
       </tbody>
     </table>
 
+    <!-- NUEVO: total en dólares (ExchangeRate) -->
+    <p class="text-muted small mt-2 mb-0" *ngIf="cotizacionValida && tasaUSD > 0">
+      <i class="bi bi-currency-dollar"></i> Aproximadamente US$ {{ totalUSD | number: '1.2-2' }}
+    </p>
+
+    <!-- NUEVO: festivos dentro de la estadía (Nager.Date) -->
+    <div class="alert alert-info mt-3 mb-0 py-2" *ngIf="cotizacionValida && festivosEstadia.length > 0">
+      <i class="bi bi-calendar-event"></i> Tu estadía incluye festivos:
+      <ul class="mb-0">
+        <li *ngFor="let festivo of festivosEstadia">{{ festivo.date }} · {{ festivo.localName }}</li>
+      </ul>
+    </div>
+
     <div class="mt-4" *ngIf="cotizacionValida">
       <h5>Datos del huésped</h5>
       <div class="mb-3">
