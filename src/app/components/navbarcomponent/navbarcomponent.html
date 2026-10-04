@@ -1,15 +1,23 @@
-<nav class="navbar navbar-expand bg-dark navbar-dark">
+<nav class="navbar navbar-expand bg-dark navbar-dark sticky-top shadow">
   <div class="container flex-wrap">
-    <a class="navbar-brand fw-bold" routerLink="/">Inversiones LR</a>
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <i class="bi bi-house-heart-fill text-warning"></i> Inversiones LR
+    </a>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="bi bi-house"></i> Inicio
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/alojamientos" routerLinkActive="active">Alojamientos</a>
+        <a class="nav-link" routerLink="/alojamientos" routerLinkActive="active">
+          <i class="bi bi-search"></i> Alojamientos
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/reservas" routerLinkActive="active">Mis reservas</a>
+        <a class="nav-link" routerLink="/reservas" routerLinkActive="active">
+          <i class="bi bi-calendar-check"></i> Mis reservas
+        </a>
       </li>
     </ul>
   </div>

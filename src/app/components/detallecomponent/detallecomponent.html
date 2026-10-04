@@ -1,4 +1,6 @@
-<a routerLink="/alojamientos" class="btn btn-link px-0 mb-3">← Volver a alojamientos</a>
+<a routerLink="/alojamientos" class="btn btn-outline-secondary btn-sm rounded-pill mb-3">
+  <i class="bi bi-arrow-left"></i> Volver a alojamientos
+</a>
 
 <div class="alert alert-danger" *ngIf="mensajeError">{{ mensajeError }}</div>
 
@@ -6,7 +8,7 @@
   Alojamiento no encontrado.
 </div>
 
-<div *ngIf="alojamiento">
+<div *ngIf="alojamiento" class="animate__animated animate__fadeIn">
   <h1>{{ alojamiento.nombre }}</h1>
   <p class="text-muted">{{ alojamiento.ubicacion }} · {{ alojamiento.ciudad }}</p>
 

@@ -1,14 +1,16 @@
-<div class="card h-100 shadow-sm">
+<div class="card h-100 shadow-sm tarjeta animate__animated animate__fadeInUp">
   <img [src]="alojamiento.imagenPrincipal" class="card-img-top" [alt]="alojamiento.nombre">
   <div class="card-body">
     <h5 class="card-title">{{ alojamiento.nombre }}</h5>
-    <p class="text-muted mb-1">{{ alojamiento.ciudad }} · {{ alojamiento.tipo }}</p>
-    <p class="mb-1">Capacidad: {{ alojamiento.capacidad }} huéspedes</p>
-    <p class="mb-1">Calificación: ⭐ {{ alojamiento.calificacion }}</p>
-    <p class="fw-bold mb-2">$ {{ alojamiento.precioNoche | number }} / noche</p>
+    <p class="text-muted mb-1"><i class="bi bi-geo-alt"></i> {{ alojamiento.ciudad }} · {{ alojamiento.tipo }}</p>
+    <p class="mb-1"><i class="bi bi-people"></i> {{ alojamiento.capacidad }} huéspedes</p>
+    <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> {{ alojamiento.calificacion }}</p>
+    <p class="fw-bold mb-2">$ {{ alojamiento.precioNoche | number }} <span class="fw-normal text-muted">/ noche</span></p>
     <span class="badge bg-secondary me-1" *ngFor="let servicio of alojamiento.servicios">{{ servicio }}</span>
   </div>
   <div class="card-footer bg-white border-0">
-    <a class="btn btn-primary w-100" [routerLink]="['/alojamientos', alojamiento.id]">Ver detalle</a>
+    <a class="btn btn-primary w-100" [routerLink]="['/alojamientos', alojamiento.id]">
+      Ver detalle <i class="bi bi-arrow-right"></i>
+    </a>
   </div>
 </div>
