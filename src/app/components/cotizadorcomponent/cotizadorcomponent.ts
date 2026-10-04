@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Alojamiento } from '../../models/alojamiento';
+import { Reserva } from '../../models/reserva';
+import { Reservas } from '../../service/reservas';
 
 @Component({
   selector: 'app-cotizadorcomponent',
@@ -9,6 +11,8 @@ import { Alojamiento } from '../../models/alojamiento';
 })
 export class Cotizadorcomponent {
   @Input() alojamiento!: Alojamiento;
+
+  private reservasService = inject(Reservas);
 
   hoy: string = this.obtenerHoy();
 
@@ -24,6 +28,11 @@ export class Cotizadorcomponent {
   tarifaLimpieza: number = 0;
   tarifaServicio: number = 0;
   total: number = 0;
+
+  nombreHuesped: string = '';
+  correo: string = '';
+  mensajeErrorReserva: string = '';
+  mensajeExito: string = '';
 
   // Fecha de hoy en formato AAAA-MM-DD (el mismo que usa <input type="date">)
   obtenerHoy(): string {
@@ -58,6 +67,7 @@ export class Cotizadorcomponent {
 
   cotizar(): void {
     this.cotizacionValida = false;
+    this.mensajeExito = '';
     this.mensajeError = this.validar();
     if (this.mensajeError !== '') {
       return;
@@ -78,5 +88,48 @@ export class Cotizadorcomponent {
   // Si el usuario cambia algún dato, la cotización anterior deja de ser válida
   cambiarDatos(): void {
     this.cotizacionValida = false;
+  }
+
+  // Registra la reserva simulada (solo si hay una cotización válida)
+  reservar(): void {
+    this.mensajeErrorReserva = '';
+
+    if (!this.cotizacionValida) {
+      this.mensajeErrorReserva = 'Primero debe generar una cotización válida.';
+      return;
+    }
+    if (this.nombreHuesped.trim() === '') {
+      this.mensajeErrorReserva = 'Ingrese el nombre del huésped.';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.correo.trim())) {
+      this.mensajeErrorReserva = 'Ingrese un correo electrónico válido.';
+      return;
+    }
+
+    const reserva: Reserva = {
+      id: 0,
+      alojamientoId: this.alojamiento.id,
+      alojamientoNombre: this.alojamiento.nombre,
+      ciudad: this.alojamiento.ciudad,
+      fechaLlegada: this.fechaLlegada,
+      fechaSalida: this.fechaSalida,
+      huespedes: this.huespedes,
+      noches: this.noches,
+      total: this.total,
+      nombreHuesped: this.nombreHuesped.trim(),
+      correo: this.correo.trim(),
+      estado: '',
+    };
+
+    this.reservasService.agregarReserva(reserva);
+    this.mensajeExito = 'Reserva #' + reserva.id + ' ' + reserva.estado + ' a nombre de ' + reserva.nombreHuesped + '.';
+
+    this.cotizacionValida = false;
+    this.fechaLlegada = '';
+    this.fechaSalida = '';
+    this.huespedes = 1;
+    this.nombreHuesped = '';
+    this.correo = '';
   }
 }

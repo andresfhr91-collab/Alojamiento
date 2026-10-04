@@ -45,5 +45,23 @@
       </tr>
       </tbody>
     </table>
+
+    <div class="mt-4" *ngIf="cotizacionValida">
+      <h5>Datos del huésped</h5>
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="nombreHuesped">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" [(ngModel)]="correo">
+      </div>
+      <button class="btn btn-success w-100" (click)="reservar()">Reservar</button>
+      <div class="alert alert-danger mt-3 mb-0" *ngIf="mensajeErrorReserva">{{ mensajeErrorReserva }}</div>
+    </div>
+
+    <div class="alert alert-success mt-3 mb-0" *ngIf="mensajeExito">
+      {{ mensajeExito }} <a routerLink="/reservas">Ver mis reservas</a>
+    </div>
   </div>
 </div>
