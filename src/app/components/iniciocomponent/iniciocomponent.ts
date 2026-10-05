@@ -15,7 +15,7 @@ export class Iniciocomponent implements OnInit {
   destacados: Alojamiento[] = [];
   statuscode: number = 0;
   mensajeError: string = '';
-
+  cargando: boolean = true;
   ngOnInit(): void {
     this.alojamientosService.getDatos().subscribe({
       next: (response) => {
@@ -24,10 +24,12 @@ export class Iniciocomponent implements OnInit {
         const activos = todos.filter((alojamiento) => alojamiento.activo);
         activos.sort((a, b) => b.calificacion - a.calificacion);
         this.destacados = activos.slice(0, 3);
+        this.cargando = false;
         this.cdr.markForCheck();
       },
       error: () => {
         this.mensajeError = 'No se pudieron cargar los alojamientos.';
+        this.cargando = false;
         this.cdr.markForCheck();
       },
     });
