@@ -1,6 +1,12 @@
 <a routerLink="/alojamientos" class="btn btn-outline-secondary btn-sm rounded-pill mb-3">
   <i class="bi bi-arrow-left"></i> Volver a alojamientos
+
 </a>
+
+<div class="text-center py-5" *ngIf="cargando">
+  <div class="spinner-border text-primary" role="status"></div>
+  <p class="text-muted mt-2">Cargando alojamiento...</p>
+</div>
 
 <div class="alert alert-danger" *ngIf="mensajeError">{{ mensajeError }}</div>
 

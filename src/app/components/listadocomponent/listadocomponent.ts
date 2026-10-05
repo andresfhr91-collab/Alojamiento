@@ -17,6 +17,7 @@ export class Listadocomponent implements OnInit {
   tipos: string[] = [];
   statuscode: number = 0;
   mensajeError: string = '';
+  cargando: boolean = true;
 
   filtroCiudad: string = '';
   filtroTipo: string = '';
@@ -30,10 +31,12 @@ export class Listadocomponent implements OnInit {
         const todos = response.body?.alojamientos ?? [];
         this.alojamientos = todos.filter((alojamiento) => alojamiento.activo);
         this.cargarOpciones();
+        this.cargando = false;
         this.cdr.markForCheck();
       },
       error: () => {
         this.mensajeError = 'No se pudieron cargar los alojamientos.';
+        this.cargando = false;
         this.cdr.markForCheck();
       },
     });
