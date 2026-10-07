@@ -16,4 +16,10 @@ export class Misreservascomponent implements OnInit {
   ngOnInit(): void {
     this.reservas = this.reservasService.getReservas();
   }
+  // pregunta antes de cancelar para que no se cancele por error
+  cancelar(reserva: Reserva): void {
+    if (confirm('¿Seguro que desea cancelar la reserva #' + reserva.id + '?')) {
+      this.reservasService.cancelarReserva(reserva.id);
+    }
+  }
 }

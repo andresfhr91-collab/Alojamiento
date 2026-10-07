@@ -38,4 +38,12 @@ export class Reservas {
     this.reservas.push(reserva);
     this.guardarReservas();
   }
+  // busca la reserva por id, le cambia el estado a CANCELADA y guarda
+  cancelarReserva(id: number): void {
+    const reserva = this.reservas.find((r) => r.id === id);
+    if (reserva) {
+      reserva.estado = 'CANCELADA';
+      this.guardarReservas();
+    }
+  }
 }

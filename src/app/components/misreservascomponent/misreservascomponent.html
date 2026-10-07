@@ -18,6 +18,7 @@
       <th>Huéspedes</th>
       <th>Valor total</th>
       <th>Estado</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -29,7 +30,16 @@
       <td>{{ reserva.fechaSalida }}</td>
       <td>{{ reserva.huespedes }}</td>
       <td>$ {{ reserva.total | number }}</td>
-      <td><span class="badge bg-success">{{ reserva.estado }}</span></td>
+      <td>
+        <span class="badge" [class.bg-success]="reserva.estado === 'CONFIRMADA'"
+              [class.bg-danger]="reserva.estado === 'CANCELADA'">{{ reserva.estado }}</span>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger btn-sm" *ngIf="reserva.estado === 'CONFIRMADA'"
+                (click)="cancelar(reserva)">
+          <i class="bi bi-x-circle"></i> Cancelar
+        </button>
+      </td>
     </tr>
     </tbody>
   </table>
