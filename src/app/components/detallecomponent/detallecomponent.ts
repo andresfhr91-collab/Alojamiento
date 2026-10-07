@@ -70,4 +70,15 @@ export class Detallecomponent implements OnInit {
       },
     });
   }
+  // suma las calificaciones de las reseñas y saca el promedio
+  promedioResenas(): number {
+    if (this.resenas.length === 0) {
+      return 0;
+    }
+    let suma = 0;
+    for (const resena of this.resenas) {
+      suma = suma + resena.calificacion;
+    }
+    return suma / this.resenas.length;
+  }
 }
