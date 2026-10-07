@@ -23,6 +23,7 @@ export class Listadocomponent implements OnInit {
   filtroTipo: string = '';
   filtroHuespedes: number = 0;
   filtroPrecioMaximo: number = 0;
+  orden: string = '';
 
   ngOnInit(): void {
     this.alojamientosService.getDatos().subscribe({
@@ -42,7 +43,7 @@ export class Listadocomponent implements OnInit {
     });
   }
 
-  // Arma las listas de ciudades y tipos sin repetidos para los select
+  // saca las ciudades y los tipos para llenar los select, sin repetir
   cargarOpciones(): void {
     for (const alojamiento of this.alojamientos) {
       if (!this.ciudades.includes(alojamiento.ciudad)) {
@@ -53,10 +54,9 @@ export class Listadocomponent implements OnInit {
       }
     }
   }
-
-  // Devuelve solo los alojamientos que cumplen todos los filtros
+  // filtra con lo que el usuario selecciono (si un filtro esta vacio no cuenta) y despues ordena
   filtrar(): Alojamiento[] {
-    return this.alojamientos.filter((alojamiento) => {
+    const resultado = this.alojamientos.filter((alojamiento) => {
       if (this.filtroCiudad && alojamiento.ciudad !== this.filtroCiudad) {
         return false;
       }
@@ -71,6 +71,17 @@ export class Listadocomponent implements OnInit {
       }
       return true;
     });
+
+    if (this.orden === 'precioMenor') {
+      resultado.sort((a, b) => a.precioNoche - b.precioNoche);
+    }
+    if (this.orden === 'precioMayor') {
+      resultado.sort((a, b) => b.precioNoche - a.precioNoche);
+    }
+    if (this.orden === 'calificacion') {
+      resultado.sort((a, b) => b.calificacion - a.calificacion);
+    }
+    return resultado;
   }
 
   limpiarFiltros(): void {
@@ -78,5 +89,6 @@ export class Listadocomponent implements OnInit {
     this.filtroTipo = '';
     this.filtroHuespedes = 0;
     this.filtroPrecioMaximo = 0;
+    this.orden = '';
   }
 }
