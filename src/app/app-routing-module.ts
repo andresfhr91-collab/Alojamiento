@@ -4,13 +4,13 @@ import { Iniciocomponent } from './components/iniciocomponent/iniciocomponent';
 import { Listadocomponent } from './components/listadocomponent/listadocomponent';
 import { Detallecomponent } from './components/detallecomponent/detallecomponent';
 import { Misreservascomponent } from './components/misreservascomponent/misreservascomponent';
-
+import { Noencontradocomponent } from './components/noencontradocomponent/noencontradocomponent';
 const routes: Routes = [
   { path: '', component: Iniciocomponent },
   { path: 'alojamientos', component: Listadocomponent },
   { path: 'alojamientos/:id', component: Detallecomponent },
   { path: 'reservas', component: Misreservascomponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: Noencontradocomponent }
 ];
 
 @NgModule({
