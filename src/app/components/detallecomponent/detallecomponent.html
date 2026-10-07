@@ -23,10 +23,20 @@
   </div>
   <p class="text-muted small" *ngIf="errorClima">{{ errorClima }}</p>
 
-  <div class="row g-2 mb-4">
-    <div class="col-md-6" *ngFor="let imagen of alojamiento.imagenes">
-      <img [src]="imagen" class="img-fluid rounded imagen-detalle" [alt]="alojamiento.nombre">
+  <div id="carruselFotos" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner rounded">
+      <div class="carousel-item" *ngFor="let imagen of alojamiento.imagenes; let i = index" [class.active]="i === 0">
+        <img [src]="imagen" class="d-block w-100 imagen-detalle" [alt]="alojamiento.nombre">
+      </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carruselFotos" data-bs-slide="prev"
+            *ngIf="alojamiento.imagenes.length > 1">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carruselFotos" data-bs-slide="next"
+            *ngIf="alojamiento.imagenes.length > 1">
+      <span class="carousel-control-next-icon"></span>
+    </button>
   </div>
 
   <div class="row g-4">
