@@ -4,7 +4,7 @@ En este apartado vamos a hacer la división de los requerimientos que nos solici
 
 ## Listado
 
- Código | Nombre                                                                | Descripción | Pantalla
+| Código | Nombre                                                                | Descripción | Pantalla
 |-------|-----------------------------------------------------------------------|-------------|---|
 | RF-01 | Consultar alojamientos disponibles                                    | (Listado)   |
 | RF-02 | Filtrar por ciudad                                                    | (Listado)   |
