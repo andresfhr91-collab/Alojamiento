@@ -229,6 +229,28 @@
       "usuario": "Natalia Pérez",
       "calificacion": 4,
       "comentario": "La casa es amplia y está muy bien ubicada."
-    }
+    },
+    {
+      "id": 6,
+      "alojamientoId": 5,
+      "usuario": "Carolos Mandoza",
+      "calificacion": 5,
+      "comentario": "Excelente ubicacion en medellin, el apatamento es comobo y muy limpio."
+    },
+    {
+      "id": 7,
+      "alojamientoId": 3,
+      "usuario": "Andrea Gomes",
+      "calificacion": 4,
+      "comentario": "La vista al peñol en guatape es espectacular, muy recomendado."
+    },
+    {
+      {
+      "id": 8,
+      "alojamientoId": 2,
+      "usuario": "Felipe Torres",
+      "calificacion": 5,
+      "comentario": "Increible estadia en cartagena, cerca de todo y muy buena atencion."
+    },
   ]
 }
