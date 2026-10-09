@@ -36,7 +36,8 @@
     {
       "id": 2,
       "nombre": "Apartamento frente al mar",
-      "descripcion": "Apartamento con vista al mar ubicado en una zona turística de Cartagena.",       "ciudad": "Cartagena",
+      "descripcion": "Apartamento con vista al mar ubicado en una zona turística de Cartagena.",
+      "ciudad": "Cartagena",
       "ubicacion": "Bocagrande, Cartagena",
       "tipo": "Apartamento",
       "capacidad": 5,

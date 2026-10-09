@@ -5,7 +5,7 @@ En este apartado vamos a hacer la división de los requerimientos que nos solici
 ## Listado
 
 | Código | Nombre | Descripción | Pantalla |
-|-------|-----------------------------------------------------------------------|---------------------------|---|--|
+|---|---|---|---|
 | RF-01 | Consultar alojamientos disponibles | Al entrar a `/alojamientos` se leen los datos de `data.json` y se muestran en tarjetas solo los alojamientos activos. Mientras carga aparece un indicador y, si la carga falla, un mensaje de error. | Listado |
 | RF-02 | Filtrar por ciudad | Un selector con las ciudades disponibles (sin repetir) deja ver solo los alojamientos de la ciudad elegida. La opción "Todas" quita el filtro. | Listado |
 | RF-03 | Filtrar por número de huéspedes | Muestra solo los alojamientos cuya capacidad es igual o mayor al número de huéspedes ingresado. | Listado |
