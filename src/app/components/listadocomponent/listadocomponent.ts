@@ -24,6 +24,7 @@ export class Listadocomponent implements OnInit {
   filtroHuespedes: number = 0;
   filtroPrecioMaximo: number = 0;
   orden: string = '';
+  filtroCalificacion: number = 0;
 
   ngOnInit(): void {
     this.alojamientosService.getDatos().subscribe({
@@ -69,6 +70,9 @@ export class Listadocomponent implements OnInit {
       if (this.filtroPrecioMaximo && alojamiento.precioNoche > this.filtroPrecioMaximo) {
         return false;
       }
+      if (this.filtroCalificacion && alojamiento.calificacion < this.filtroCalificacion) {
+        return false;
+      }
       return true;
     });
 
@@ -90,5 +94,6 @@ export class Listadocomponent implements OnInit {
     this.filtroHuespedes = 0;
     this.filtroPrecioMaximo = 0;
     this.orden = '';
+    this.filtroCalificacion = 0;
   }
 }
