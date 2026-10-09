@@ -23,58 +23,74 @@
 
     <button class="btn btn-primary w-100" (click)="cotizar()">Cotizar</button>
 
-    <div class="alert alert-danger mt-3 mb-0" *ngIf="mensajeError">{{ mensajeError }}</div>
+    @if (mensajeError) {
+      <div class="alert alert-danger mt-3 mb-0">{{ mensajeError }}</div>
+    }
 
-    <table class="table mt-3 mb-0" *ngIf="cotizacionValida">
-      <tbody>
-      <tr>
-        <td>$ {{ alojamiento.precioNoche | number }} × {{ noches }} noches</td>
-        <td class="text-end">$ {{ subtotal | number }}</td>
-      </tr>
-      <tr>
-        <td>Tarifa de limpieza</td>
-        <td class="text-end">$ {{ tarifaLimpieza | number }}</td>
-      </tr>
-      <tr>
-        <td>Tarifa de servicio (10%)</td>
-        <td class="text-end">$ {{ tarifaServicio | number }}</td>
-      </tr>
-      <tr class="fw-bold">
-        <td>Total</td>
-        <td class="text-end">$ {{ total | number }}</td>
-      </tr>
-      </tbody>
-    </table>
+    @if (cotizacionValida) {
+      <table class="table mt-3 mb-0">
+        <tbody>
+        <tr>
+          <td>$ {{ alojamiento.precioNoche | number }} × {{ noches }} noches</td>
+          <td class="text-end">$ {{ subtotal | number }}</td>
+        </tr>
+        <tr>
+          <td>Tarifa de limpieza</td>
+          <td class="text-end">$ {{ tarifaLimpieza | number }}</td>
+        </tr>
+        <tr>
+          <td>Tarifa de servicio (10%)</td>
+          <td class="text-end">$ {{ tarifaServicio | number }}</td>
+        </tr>
+        <tr class="fw-bold">
+          <td>Total</td>
+          <td class="text-end">$ {{ total | number }}</td>
+        </tr>
+        </tbody>
+      </table>
+    }
 
     <!-- NUEVO: total en dólares (ExchangeRate) -->
-    <p class="text-muted small mt-2 mb-0" *ngIf="cotizacionValida && tasaUSD > 0">
-      <i class="bi bi-currency-dollar"></i> Aproximadamente US$ {{ totalUSD | number: '1.2-2' }}
-    </p>
+    @if (cotizacionValida && tasaUSD > 0) {
+      <p class="text-muted small mt-2 mb-0">
+        <i class="bi bi-currency-dollar"></i> Aproximadamente US$ {{ totalUSD | number: '1.2-2' }}
+      </p>
+    }
 
     <!-- NUEVO: festivos dentro de la estadía (Nager.Date) -->
-    <div class="alert alert-info mt-3 mb-0 py-2" *ngIf="cotizacionValida && festivosEstadia.length > 0">
-      <i class="bi bi-calendar-event"></i> Tu estadía incluye festivos:
-      <ul class="mb-0">
-        <li *ngFor="let festivo of festivosEstadia">{{ festivo.date }} · {{ festivo.localName }}</li>
-      </ul>
-    </div>
-
-    <div class="mt-4" *ngIf="cotizacionValida">
-      <h5>Datos del huésped</h5>
-      <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input type="text" class="form-control" [(ngModel)]="nombreHuesped">
+    @if (cotizacionValida && festivosEstadia.length > 0) {
+      <div class="alert alert-info mt-3 mb-0 py-2">
+        <i class="bi bi-calendar-event"></i> Tu estadía incluye festivos:
+        <ul class="mb-0">
+          @for (festivo of festivosEstadia; track $index) {
+            <li>{{ festivo.date }} · {{ festivo.localName }}</li>
+          }
+        </ul>
       </div>
-      <div class="mb-3">
-        <label class="form-label">Correo electrónico</label>
-        <input type="email" class="form-control" [(ngModel)]="correo">
-      </div>
-      <button class="btn btn-success w-100" (click)="reservar()">Reservar</button>
-      <div class="alert alert-danger mt-3 mb-0" *ngIf="mensajeErrorReserva">{{ mensajeErrorReserva }}</div>
-    </div>
+    }
 
-    <div class="alert alert-success mt-3 mb-0" *ngIf="mensajeExito">
-      {{ mensajeExito }} <a routerLink="/reservas">Ver mis reservas</a>
-    </div>
+    @if (cotizacionValida) {
+      <div class="mt-4">
+        <h5>Datos del huésped</h5>
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="nombreHuesped">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Correo electrónico</label>
+          <input type="email" class="form-control" [(ngModel)]="correo">
+        </div>
+        <button class="btn btn-success w-100" (click)="reservar()">Reservar</button>
+        @if (mensajeErrorReserva) {
+          <div class="alert alert-danger mt-3 mb-0">{{ mensajeErrorReserva }}</div>
+        }
+      </div>
+    }
+
+    @if (mensajeExito) {
+      <div class="alert alert-success mt-3 mb-0">
+        {{ mensajeExito }} <a routerLink="/reservas">Ver mis reservas</a>
+      </div>
+    }
   </div>
 </div>

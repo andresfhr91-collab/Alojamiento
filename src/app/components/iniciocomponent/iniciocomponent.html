@@ -13,15 +13,21 @@
 
 <h2 class="mb-4">Alojamientos destacados</h2>
 
-<div class="text-center py-5" *ngIf="cargando">
-  <div class="spinner-border text-primary" role="status"></div>
-  <p class="text-muted mt-2">Cargando destacados...</p>
-</div>
+@if (cargando) {
+  <div class="text-center py-5">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="text-muted mt-2">Cargando destacados...</p>
+  </div>
+}
 
-<div class="alert alert-danger" *ngIf="mensajeError">{{ mensajeError }}</div>
+@if (mensajeError) {
+  <div class="alert alert-danger">{{ mensajeError }}</div>
+}
 
 <div class="row g-4">
-  <div class="col-sm-6 col-lg-4" *ngFor="let alojamiento of destacados">
-    <app-tarjetacomponent [alojamiento]="alojamiento"></app-tarjetacomponent>
-  </div>
+  @for (alojamiento of destacados; track alojamiento.id) {
+    <div class="col-sm-6 col-lg-4">
+      <app-tarjetacomponent [alojamiento]="alojamiento"></app-tarjetacomponent>
+    </div>
+  }
 </div>
