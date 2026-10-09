@@ -36,7 +36,8 @@
     {
       "id": 2,
       "nombre": "Apartamento frente al mar",
-      "descripcion": "Apartamento con vista al mar ubicado en una zona turística de Cartagena.",       "ciudad": "Cartagena",
+      "descripcion": "Apartamento con vista al mar ubicado en una zona turística de Cartagena.",
+      "ciudad": "Cartagena",
       "ubicacion": "Bocagrande, Cartagena",
       "tipo": "Apartamento",
       "capacidad": 5,
@@ -233,24 +234,23 @@
     {
       "id": 6,
       "alojamientoId": 5,
-      "usuario": "Carolos Mandoza",
+      "usuario": "Carlos Mendoza",
       "calificacion": 5,
-      "comentario": "Excelente ubicacion en medellin, el apatamento es comobo y muy limpio."
+      "comentario": "Excelente ubicación en Medellín, el apartamento es cómodo y muy limpio."
     },
     {
       "id": 7,
       "alojamientoId": 3,
-      "usuario": "Andrea Gomes",
+      "usuario": "Andrea Gómez",
       "calificacion": 4,
-      "comentario": "La vista al peñol en guatape es espectacular, muy recomendado."
+      "comentario": "La vista al Peñol en Guatapé es espectacular, muy recomendado."
     },
     {
-      {
       "id": 8,
       "alojamientoId": 2,
       "usuario": "Felipe Torres",
       "calificacion": 5,
-      "comentario": "Increible estadia en cartagena, cerca de todo y muy buena atencion."
-    },
+      "comentario": "Increíble estadía en Cartagena, cerca de todo y muy buena atención."
+    }
   ]
 }
