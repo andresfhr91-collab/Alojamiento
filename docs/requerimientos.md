@@ -11,7 +11,7 @@ En este apartado vamos a hacer la división de los requerimientos que nos solici
 | RF-03 | Filtrar por número de huéspedes | Muestra solo los alojamientos cuya capacidad es igual o mayor al número de huéspedes ingresado. | Listado |
 | RF-04 | Filtrar por tipo de alojamiento | Un selector con los tipos disponibles (sin repetir) deja ver solo los alojamientos del tipo elegido. La opción "Todos" quita el filtro. | Listado |
 | RF-05 | Filtrar por precio máximo | Muestra solo los alojamientos con precio por noche menor o igual al valor ingresado. | Listado |
-| RF-06 | Limpiar filtros | El botón "Limpiar filtros" reinicia ciudad, huéspedes, tipo, precio máximo y orden, y vuelve a mostrar todos los alojamientos activos. | Listado |
+| RF-06 | Limpiar filtros | El botón "Limpiar filtros" reinicia ciudad, huéspedes, tipo, precio máximo, calificación mínima y orden, y vuelve a mostrar todos los alojamientos activos. | Listado |
 | RF-07 | Ver alojamientos destacados | La portada muestra los 3 alojamientos activos con mejor calificación. | Inicio |
 | RF-08 | Consultar el detalle de un alojamiento | Al abrir `/alojamientos/:id` se toma el `id` de la URL y se muestra nombre, ubicación, descripción, tipo, capacidad, habitaciones, camas, baños, precio, calificación, servicios, reglas y reseñas. Si el `id` no existe o el alojamiento está inactivo, se informa "Alojamiento no encontrado". | Detalle |
 | RF-09 | Seleccionar fechas y huéspedes | El usuario elige fecha de llegada, fecha de salida y número de huéspedes. El calendario no permite fechas pasadas ni una salida anterior a la llegada. Si cambia algún dato, la cotización anterior deja de ser válida. | Detalle – Cotizador |
@@ -24,7 +24,7 @@ En este apartado vamos a hacer la división de los requerimientos que nos solici
 | RF-16 | Ver fotos en carrusel | Las imágenes del alojamiento se muestran en un carrusel que avanza solo. Las flechas para pasar las fotos solo aparecen si hay más de una imagen. | Detalle |
 | RF-17 | Ver promedio de reseñas | Junto al título "Reseñas" se muestra el promedio de calificación (con un decimal) y la cantidad de reseñas. Si no hay reseñas, se indica "Este alojamiento aún no tiene reseñas". | Detalle |
 | RF-18 | Página de error 404 | Cualquier ruta que no exista muestra una página 404 con un botón para volver al inicio. | 404 (cualquier ruta inválida) |
-
+| RF-19 | Filtrar por calificación mínima | Un selector permite ver solo los alojamientos con calificación igual o mayor a 4.5, 4.7 o 4.8. La opción "Todas" quita el filtro. | Listado |
 ## Funcionalidades adicionales
 
 - Clima actual de la ciudad (API Open-Meteo) - Detalles
