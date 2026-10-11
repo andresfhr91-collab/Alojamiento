@@ -14,13 +14,13 @@ La aplicación está organizada en **componentes**, **servicios** y **modelos**,
 | `detallecomponent` | `/alojamientos/:id` | Lee el `id` de la URL y muestra toda la información, imágenes, reglas, reseñas y clima. | Presentación |
 | `cotizadorcomponent` | Dentro del detalle | Formulario de fechas y huéspedes, valida reglas, calcula la cotización, muestra festivos y dólares, y registra la reserva. | Formulario y reservas |
 | `misreservascomponent` | `/reservas` | Lista las reservas realizadas o un mensaje si no hay. | Manejo de reservas |
-
+| `noencontradocomponent` | `**` (cualquier ruta inválida) | Página 404 con un botón para volver al inicio. | Navegación |
 ## Servicios
 
 | Servicio | Responsabilidad | Tipo |
 |---|---|---|
 | `Alojamientos` (`service/alojamientos.ts`) | Lee `public/data/data.json` con `HttpClient`. | Acceso a datos |
-| `Reservas` (`service/reservas.ts`) | Guarda las reservas en memoria, asigna el `id` y el estado `CONFIRMADA`. | Manejo de reservas |
+| `Reservas` (`service/reservas.ts`) | Guarda las reservas en el `localStorage` del navegador, asigna el `id`, el estado `CONFIRMADA` y permite cancelarlas (`CANCELADA`). | Manejo de reservas |
 | `Apisexternas` (`service/apisexternas.ts`) | Consulta Open-Meteo (clima), Nager.Date (festivos) y ExchangeRate (dólares). | Acceso a datos |
 
 ## Modelos (interfaces TypeScript)
@@ -43,6 +43,7 @@ App
 │   ├── iniciocomponent ──────── tarjetacomponent (x3)
 │   ├── listadocomponent ─────── tarjetacomponent (xN)
 │   ├── detallecomponent ─────── cotizadorcomponent
-│   └── misreservascomponent
+│   ├── misreservascomponent
+│   └── noencontradocomponent
 └── footercomponent
 ```
